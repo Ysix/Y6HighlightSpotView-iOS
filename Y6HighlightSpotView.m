@@ -68,14 +68,16 @@
 	{
 		[super setFrame:frame];
 
-		[topView setFrame:CGRectMake(0, 0, frame.size.width, highlightedPoint.y - radius)];
+		CGPoint realHighlightedPoint = CGPointMake(highlightedPoint.x - frame.origin.x, highlightedPoint.y - frame.origin.y);
 
-		[rightView setFrame:CGRectMake(highlightedPoint.x + radius,  highlightedPoint.y - radius, frame.size.width - (highlightedPoint.x + radius), radius * 2)];
+		[topView setFrame:CGRectMake(0, 0, frame.size.width, realHighlightedPoint.y - radius)];
 
-		[bottomView setFrame:CGRectMake(0, highlightedPoint.y + radius, frame.size.width, frame.size.height - (highlightedPoint.y + radius))];
-		[leftView setFrame:CGRectMake(0,  highlightedPoint.y - radius, highlightedPoint.x - radius, radius * 2)];
+		[rightView setFrame:CGRectMake(realHighlightedPoint.x + radius,  realHighlightedPoint.y - radius, frame.size.width - (realHighlightedPoint.x + radius), radius * 2)];
 
-		[centerIV setFrame:CGRectMake(highlightedPoint.x - radius,  highlightedPoint.y - radius, radius * 2, radius * 2)];
+		[bottomView setFrame:CGRectMake(0, realHighlightedPoint.y + radius, frame.size.width, frame.size.height - (realHighlightedPoint.y + radius))];
+		[leftView setFrame:CGRectMake(0,  realHighlightedPoint.y - radius, realHighlightedPoint.x - radius, radius * 2)];
+
+		[centerIV setFrame:CGRectMake(realHighlightedPoint.x - radius,  realHighlightedPoint.y - radius, radius * 2, radius * 2)];
 	};
 
 	if (duration)
